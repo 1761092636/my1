@@ -3,8 +3,24 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var path = require('path');
+var formidable=require('formidable');
+var form=formidable({
+  multiples:true,
+  uploadDir:path.join(__dirname,'../public/images')
+})
+form.parse(req,(err,fields,files)=> {
+  let nawName = path.join(__dirname,"../public/images",Date.now()+path.extname(files.abc.name));
+  rs.rename(
+    files.abc.path,newName,
+   (err) => {
+     console.log(err);
+    }
+  )
+} )
+res.send(req.body);
 // mysql
 var mysql =require('mysql');
+const { RSA_NO_PADDING } = require('constants');
 var mysql_user ={host:"localhost",port:3306,user:'root',password:'root',database:'dz',insecureAuth : true};
 var connection =mysql.createConnection(mysql_user);
 
@@ -63,7 +79,7 @@ router.get('/cart',(req,res) => {
   res.render('cart');
 });
 router.get('/cartmery',(req,res) => {
-  var query = "select * from tab_product"
+  var query = "select * from tab_cart_product"
   connection.query(query,function(err,rows){
     if(err){
       console.log(err);
