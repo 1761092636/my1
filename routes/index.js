@@ -45,10 +45,35 @@ router.post("/regist",(req,res) => {
        res.redirect('/login')  
     });
 });
+// shop
+router.get('/shopmery',(req,res) => {
+  var query = "select * from tab_product"
+  connection.query(query,function(err,rows){
+    if(err){
+      console.log(err);
+      return;
+    }
+    res.json(rows)
+
+  })
+});
+
 // cart
 router.get('/cart',(req,res) => {
   res.render('cart');
 });
+router.get('/cartmery',(req,res) => {
+  var query = "select * from tab_product"
+  connection.query(query,function(err,rows){
+    if(err){
+      console.log(err);
+      return;
+    }
+    res.json(rows)
+
+  })
+});
+
 //command
 router.post('/command',(req,res) => {
   res.render('command');

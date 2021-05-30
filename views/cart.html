@@ -120,60 +120,65 @@
                     <th class="product-remove">Remove</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td class="product-thumbnail">
-                      <img src="/images/cloth_1.jpg" alt="Image" class="img-fluid">
-                    </td>
-                    <td class="product-name">
-                      <h2 class="h5 text-black">Top Up T-Shirt</h2>
-                    </td>
-                    <td>$49.00</td>
-                    <td>
-                      <div class="input-group mb-3" style="max-width: 120px;">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                        </div>
-                        <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                        </div>
-                      </div>
-
-                    </td>
-                    <td>$49.00</td>
-                    <td><a href="#" class="btn btn-primary btn-sm">X</a></td>
-                  </tr>
-
-                  <tr>
-                    <td class="product-thumbnail">
-                      <img src="/images/cloth_2.jpg" alt="Image" class="img-fluid">
-                    </td>
-                    <td class="product-name">
-                      <h2 class="h5 text-black">Polo Shirt</h2>
-                    </td>
-                    <td>$49.00</td>
-                    <td>
-                      <div class="input-group mb-3" style="max-width: 120px;">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                        </div>
-                        <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                        </div>
-                      </div>
-
-                    </td>
-                    <td>$49.00</td>
-                    <td><a href="#" class="btn btn-primary btn-sm">X</a></td>
-                  </tr>
+                <tbody id="cart">
+                  
                 </tbody>
               </table>
             </div>
           </form>
         </div>
+        <script src="/javascripts/js/popper.min.js"></script>
+        <script src="/javascripts/js/bootstrap.min.js"></script>
+        <script src="/javascripts/js/owl.carousel.min.js"></script>
+        <script src="/javascripts/js/jquery.magnific-popup.min.js"></script>
+        <script src="/javascripts/js/aos.js"></script>
+      
+        <script src="/javascripts/js/main.js"></script>
+        <script src="/javascripts/js/jquery-3.3.1.min.js"></script>
+        <script src="/javascripts/js/jquery-ui.js"></script>
+   <script>
+  $.ajax({
+    type:"GET",
+    url:"/cartmery",
+    async:false,
+    success:function(data){
+        console.log(data)
+        for(var i in data){
+            $("#cart").append(
+                `
+                <tr>
+                    <td class="product-thumbnail">
+                      <img src="/images/cloth_1.jpg" alt="Image" class="img-fluid">
+                    </td>
+                    <td class="product-name">
+                      <h2 class="h5 text-black">${data[i].product_name}</h2>
+                    </td>
+                    <td>${data[i].product_price+"$"}</td>
+                    <td>
+                      <div class="input-group mb-3" style="max-width: 120px;">
+                        <div class="input-group-prepend">
+                          <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                        </div>
+                        <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                        </div>
+                      </div>
 
+                    </td>
+                    <td>${data[i].product_price+"$"}</td>
+                    
+                    <td><a class="btn btn-primary btn-sm">X</a></td>
+                  </tr>
+
+                  
+                
+                `
+            )
+        }
+    }
+})
+</script>
         <div class="row">
           <div class="col-md-6">
             <div class="row mb-5">
@@ -309,15 +314,6 @@
     </footer>
   </div>
 
-  <script src="/javascripst/js/jquery-3.3.1.min.js"></script>
-  <script src="/javascripst/js/jquery-ui.js"></script>
-  <script src="/javascripst/js/popper.min.js"></script>
-  <script src="/javascripst/js/bootstrap.min.js"></script>
-  <script src="/javascripst/js/owl.carousel.min.js"></script>
-  <script src="/javascripst/js/jquery.magnific-popup.min.js"></script>
-  <script src="/javascripst/js/aos.js"></script>
-
-  <script src="/javascripst/js/main.js"></script>
     
   </body>
 </html>
