@@ -120,8 +120,22 @@ router.get('/about',(req,res) => {
   res.render('about');
 });
 // single product
-router.get('/shop-single',(req,res) => {
+var name = null;
+router.get('/shop-single/:id',(req,res) => {
+ name = req.params.id;
   res.render('shop-single');
+});
+router.get('/singlemery',(req,res) => {
+  console.log(name);
+  var query = "select * from tab_product where product_id = '"+name+"'"
+  connection.query(query,function(err,rows){
+    if(err){
+      console.log(err);
+      return;
+    }
+    res.json(rows)
+
+  })
 });
 // contact
 router.get('/contact',(req,res) => {

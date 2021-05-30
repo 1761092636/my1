@@ -104,17 +104,37 @@
       </div>
     </div>  
 
-    <div class="site-section">
-      <div class="container">
+    <div class="site-section" id="single">
+      
+    </div>
+    <script src="http://localhost:3000/javascripts/js/jquery-3.3.1.min.js"></script>
+  <script src="http://localhost:3000/javascripts/js/jquery-ui.js"></script>
+  <script src="http://localhost:3000/javascripts/js/popper.min.js"></script>
+  <script src="http://localhost:3000/javascripts/js/bootstrap.min.js"></script>
+  <script src="http://localhost:3000/javascripts/js/owl.carousel.min.js"></script>
+  <script src="http://localhost:3000/javascripts/js/jquery.magnific-popup.min.js"></script>
+  <script src="http://localhost:3000/javascripts/js/aos.js"></script>
+  <script src="http://localhost:3000/javascripts/js/main.js"></script>
+<script>
+   $.ajax({
+    type:"GET",
+    url:"/singlemery",
+    async:false,
+    success:function(data){
+        console.log(data)
+        for(var i in data){
+            $("#single").append(
+                `
+                <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <img src="images/cloth_1.jpg" alt="Image" class="img-fluid">
+            <img src="http://localhost:3000/images/cloth_1.jpg" alt="Image" class="img-fluid">
           </div>
           <div class="col-md-6">
-            <h2 class="text-black">Tank Top T-Shirt</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, vitae, explicabo? Incidunt facere, natus soluta dolores iusto! Molestiae expedita veritatis nesciunt doloremque sint asperiores fuga voluptas, distinctio, aperiam, ratione dolore.</p>
+            <h2 class="text-black">${data[i].product_name}</h2>
+            <p>${data[i].product_title}</p>
             <p class="mb-4">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p>
-            <p><strong class="text-primary h4">$50.00</strong></p>
+            <p><strong class="text-primary h4">${data[i].product_price+"$"}</strong></p>
             <div class="mb-1 d-flex">
               <label for="option-sm" class="d-flex mr-3 mb-3">
                 <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-sm" name="shop-sizes"></span> <span class="d-inline-block text-black">Small</span>
@@ -141,13 +161,18 @@
             </div>
 
             </div>
-            <p><a href="cart" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
+            <p><a href="/cart" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
 
           </div>
         </div>
       </div>
-    </div>
-
+                
+                `
+            )
+        }
+    }
+})
+</script>
     <div class="site-section block-3 site-blocks-2 bg-light">
       <div class="container">
         <div class="row justify-content-center">
@@ -161,7 +186,7 @@
               <div class="item">
                 <div class="block-4 text-center">
                   <figure class="block-4-image">
-                    <img src="images/cloth_1.jpg" alt="Image placeholder" class="img-fluid">
+                    <img src="http://localhost:3000/images/cloth_1.jpg" alt="Image placeholder" class="img-fluid">
                   </figure>
                   <div class="block-4-text p-4">
                     <h3><a href="#">Tank Top</a></h3>
@@ -173,7 +198,7 @@
               <div class="item">
                 <div class="block-4 text-center">
                   <figure class="block-4-image">
-                    <img src="images/shoe_1.jpg" alt="Image placeholder" class="img-fluid">
+                    <img src="http://localhost:3000/images/shoe_1.jpg" alt="Image placeholder" class="img-fluid">
                   </figure>
                   <div class="block-4-text p-4">
                     <h3><a href="#">Corater</a></h3>
@@ -185,7 +210,7 @@
               <div class="item">
                 <div class="block-4 text-center">
                   <figure class="block-4-image">
-                    <img src="images/cloth_2.jpg" alt="Image placeholder" class="img-fluid">
+                    <img src="http://localhost:3000/images/cloth_2.jpg" alt="Image placeholder" class="img-fluid">
                   </figure>
                   <div class="block-4-text p-4">
                     <h3><a href="#">Polo Shirt</a></h3>
@@ -197,7 +222,7 @@
               <div class="item">
                 <div class="block-4 text-center">
                   <figure class="block-4-image">
-                    <img src="images/cloth_3.jpg" alt="Image placeholder" class="img-fluid">
+                    <img src="http://localhost:3000/images/cloth_3.jpg" alt="Image placeholder" class="img-fluid">
                   </figure>
                   <div class="block-4-text p-4">
                     <h3><a href="#">T-Shirt Mockup</a></h3>
@@ -209,7 +234,7 @@
               <div class="item">
                 <div class="block-4 text-center">
                   <figure class="block-4-image">
-                    <img src="images/shoe_1.jpg" alt="Image placeholder" class="img-fluid">
+                    <img src="http://localhost:3000/images/shoe_1.jpg" alt="Image placeholder" class="img-fluid">
                   </figure>
                   <div class="block-4-text p-4">
                     <h3><a href="#">Corater</a></h3>
@@ -259,7 +284,7 @@
           <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
             <h3 class="footer-heading mb-4">Promo</h3>
             <a href="#" class="block-6">
-              <img src="images/hero_1.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
+              <img src="http://localhost:3000/images/hero_1.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
               <h3 class="font-weight-light  mb-0">Finding Your Perfect Shoes</h3>
               <p>Promo from  nuary 15 &mdash; 25, 2019</p>
             </a>
@@ -299,15 +324,7 @@
     </footer>
   </div>
 
-  <script src="/javascripts/js/jquery-3.3.1.min.js"></script>
-  <script src="/javascripts/js/jquery-ui.js"></script>
-  <script src="/javascripts/js/popper.min.js"></script>
-  <script src="/javascripts/js/bootstrap.min.js"></script>
-  <script src="/javascripts/js/owl.carousel.min.js"></script>
-  <script src="/javascripts/js/jquery.magnific-popup.min.js"></script>
-  <script src="/javascripts/js/aos.js"></script>
-
-  <script src="/javascripts/js/main.js"></script>
+  
     
   </body>
 </html>
