@@ -23,7 +23,6 @@ $("#product").delegate(".update_button","click",function(){
         url:"/update",
         data:{"id":$(this).data("id")},
         success:function(data){
-            alert("ok");
             window.location="/product_edit";
         } 
     })

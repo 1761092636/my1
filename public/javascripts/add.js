@@ -1,3 +1,4 @@
+const { post } = require("../../app");
 
 $('#add_button').click(function(){
     $.ajax({
@@ -12,9 +13,18 @@ $('#add_button').click(function(){
 
 
         }
-        
-        
     })
+})
 
+
+
+
+
+$('addc_button').click(function(){
+    $.ajax({
+        type:"POST",
+        url:"/addc",
+
+    })
 })
 

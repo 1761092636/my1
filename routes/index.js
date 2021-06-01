@@ -8,16 +8,16 @@ var form=formidable({
   multiples:true,
   uploadDir:path.join(__dirname,'../public/images')
 })
-form.parse(req,(err,fields,files)=> {
-  let nawName = path.join(__dirname,"../public/images",Date.now()+path.extname(files.abc.name));
-  rs.rename(
-    files.abc.path,newName,
-   (err) => {
-     console.log(err);
-    }
-  )
-} )
-res.send(req.body);
+// form.parse(res,(err,fields,files)=> {
+//   let nawName = path.join(__dirname,"../public/images",Date.now()+path.extname(files.abc.name));
+//   rs.rename(
+//     files.abc.path,newName,
+//    (err) => {
+//      console.log(err);
+//     }
+//   )
+// } )
+// res.send(req.body);
 // mysql
 var mysql =require('mysql');
 const { RSA_NO_PADDING } = require('constants');
@@ -78,6 +78,8 @@ router.get('/shopmery',(req,res) => {
 router.get('/cart',(req,res) => {
   res.render('cart');
 });
+
+
 router.get('/cartmery',(req,res) => {
   var query = "select * from tab_cart_product"
   connection.query(query,function(err,rows){
@@ -177,6 +179,10 @@ router.post('/add',(req,res) => {
   
  })
 });
+// cart add 
+router.post('addc',(req,res) => {
+
+})
 //  product edit
 router.get('/product_edit',(req,res) => {
   res.render('product_edit');
@@ -241,15 +247,19 @@ router.post('/s_edit',(req,res) => {
 });
 // product search
 router.post('/search',(req,res) => {
-  var product5 = "select * from tab_product where product_id like ? or product_name like ? or product_title like ? or product_classify like ? or product_price like ?"
+  var product5 = "select * from tab_product where product_id like '%?%' or product_name like '%?%' or product_title like '%?%' or product_classify like '%?%' or product_price like '%?%'"
   connection.query(product5,[req.body.s1,req.body.s1,req.body.s1,req.body.s1,req.body.s1],(err,results,firelde) => {
-    if(err==null||err==undefined){
-      response.send(results)
-    console.log(typeof results)
-  }
-}
-)}
-);
+      if(err){
+        console.log(err);
+        return;
+      }
+      arr=results;
+      res.json({"status3":1});
+    })
+  });
+  router.get('/search',(req,res) => {
+    res.json(arr)
+  });
 
 
 
