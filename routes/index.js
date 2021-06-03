@@ -207,7 +207,7 @@ router.post('/delete',(req,res) => {
   connection.query(product4,(err,results,firelde) => {
     if(err){
       console.log(err);
-      return;
+      return err;
     }
     res.json({"status2":1});
   })
@@ -260,7 +260,14 @@ router.post('/search',(req,res) => {
   router.get('/search',(req,res) => {
     res.json(arr)
   });
-
+// page
+var pages=0;
+var count=0;
+var tpages=0;
+var limit=3;
+router.get('page',(req,res) =>{
+  
+} )
 
 
 

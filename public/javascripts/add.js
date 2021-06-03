@@ -1,6 +1,5 @@
-const { post } = require("../../app");
-
 $('#add_button').click(function(){
+    console.log(123);
     $.ajax({
         type:"POST",
         url:"/add",
@@ -10,8 +9,6 @@ $('#add_button').click(function(){
                 alert("add success");
                 window.location.href="/product"
             }
-
-
         }
     })
 })
