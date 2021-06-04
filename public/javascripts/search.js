@@ -1,8 +1,10 @@
 $("#product").delegate(".search_button","click",function(){
+  console.log('arr');
     $.ajax({
-        type:"POST",
+        type:"GET",
         url:"/search",
         async:false,
+       
         success:function(data){
             console.log(data)
             for(var i in data){

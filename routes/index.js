@@ -246,7 +246,7 @@ router.post('/s_edit',(req,res) => {
   })
 });
 // product search
-router.post('/search',(req,res) => {
+router.get('/search',(req,res) => {
   var product5 = "select * from tab_product where product_id like '%?%' or product_name like '%?%' or product_title like '%?%' or product_classify like '%?%' or product_price like '%?%'"
   connection.query(product5,[req.body.s1,req.body.s1,req.body.s1,req.body.s1,req.body.s1],(err,results,firelde) => {
       if(err){
@@ -254,12 +254,11 @@ router.post('/search',(req,res) => {
         return;
       }
       arr=results;
-      res.json({"status3":1});
+      res.json({"status":1});
+      res.json(arr);
     })
   });
-  router.get('/search',(req,res) => {
-    res.json(arr)
-  });
+
 // page
 var pages=0;
 var count=0;
