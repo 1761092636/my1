@@ -1,12 +1,11 @@
-$("#product").delegate(".search_button","click",function(){
-  console.log('arr');
+$(".search_button").click(function(){
     $.ajax({
-        type:"GET",
+        type:"POST",
         url:"/search",
-        async:false,
-       
+        data:{"s1":$("#sear_content").val()},
         success:function(data){
             console.log(data)
+            $("#product").empty();
             for(var i in data){
                 $("#product").append(
                     `

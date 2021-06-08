@@ -181,7 +181,15 @@ router.post('/add',(req,res) => {
 });
 // cart add 
 router.post('addc',(req,res) => {
-
+  var product2 = "insert into tab_product values(?,?,?,?,?,?)";
+  connection.query(product2,[req.body.pid,req.body.pname,req.body.ptitle,req.body.pclassify,req.body.price,req.body.pimg],(err,results) => {
+    if(err){
+      console.log(err);
+      return;
+    }
+    res.json({"status":1});
+   
+  })
 })
 //  product edit
 router.get('/product_edit',(req,res) => {
@@ -246,16 +254,15 @@ router.post('/s_edit',(req,res) => {
   })
 });
 // product search
-router.get('/search',(req,res) => {
-  var product5 = "select * from tab_product where product_id like '%?%' or product_name like '%?%' or product_title like '%?%' or product_classify like '%?%' or product_price like '%?%'"
-  connection.query(product5,[req.body.s1,req.body.s1,req.body.s1,req.body.s1,req.body.s1],(err,results,firelde) => {
+router.post('/search',(req,res) => {
+  var product5 = "select product_id,product_name,product_title,product_classify, product_price from tab_product where product_id like '%"+req.body.s1+"%' or product_name like '%"+req.body.s1+"%' or product_title like '%"+req.body.s1+"%' or product_classify like '%"+req.body.s1+"%' or product_price like '%"+req.body.s1+"%'"
+  connection.query(product5,(err,results,firelde) => {
       if(err){
         console.log(err);
         return;
       }
-      arr=results;
-      res.json({"status":1});
-      res.json(arr);
+      console.log(results);
+      res.json(results);
     })
   });
 
