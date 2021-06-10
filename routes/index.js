@@ -4,20 +4,6 @@ var router = express.Router();
 var fs = require('fs');
 var path = require('path');
 var formidable=require('formidable');
-var form=formidable({
-  multiples:true,
-  uploadDir:path.join(__dirname,'../public/images')
-})
-// form.parse(res,(err,fields,files)=> {
-//   let nawName = path.join(__dirname,"../public/images",Date.now()+path.extname(files.abc.name));
-//   rs.rename(
-//     files.abc.path,newName,
-//    (err) => {
-//      console.log(err);
-//     }
-//   )
-// } )
-// res.send(req.body);
 // mysql
 var mysql =require('mysql');
 const { RSA_NO_PADDING } = require('constants');
@@ -169,6 +155,15 @@ router.get('/product_add',(req,res) => {
   res.render('product_add');
 });
 router.post('/add',(req,res) => {
+  var form = formidable({
+multiples:true,
+uploadDir:path.join(__dirname+"../public/upload_img")
+  });
+  form.parse(req,(err,fields,files) => {
+    console.log(err);
+    console.log(fields);
+    console.log(files);  
+  })
  var product2 = "insert into tab_product values(?,?,?,?,?,?)";
  connection.query(product2,[req.body.pid,req.body.pname,req.body.ptitle,req.body.pclassify,req.body.price,req.body.pimg],(err,results) => {
    if(err){
@@ -268,7 +263,7 @@ router.post('/search',(req,res) => {
 
   // shop search
   router.post('/psearch',(req,res) => {
-    var product5 = "select product_id,product_name,product_title,product_classify, product_price from tab_product where product_id like '%"+req.body.s2+"%' or product_name like '%"+req.body.s2+"%' or product_title like '%"+req.body.s2+"%' or product_classify like '%"+req.body.s2+"%' or product_price like '%"+req.body.s2+"%'"
+    var product5 = "select product_name,product_title,product_price from tab_product where product_name like '%"+req.body.s2+"%' or product_title like '%"+req.body.s2+"%' or product_price like '%"+req.body.s2+"%'"
     connection.query(product5,(err,results,firelde) => {
         if(err){
           console.log(err);
