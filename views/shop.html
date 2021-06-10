@@ -21,20 +21,32 @@
     
   </head>
   <body>
-  
+
+    <script src="/javascripts/js/jquery-3.3.1.min.js"></script>
+    <script src="/javascripts/js/jquery-ui.js"></script>
+    <script src="/javascripts/psearch.js"></script>
+    <script src="/javascripts/js/popper.min.js"></script>
+    <script src="/javascripts/js/bootstrap.min.js"></script>
+    <script src="/javascripts/js/owl.carousel.min.js"></script>
+    <script src="/javascripts/js/jquery.magnific-popup.min.js"></script>
+    <script src="/javascripts/js/aos.js"></script>
+    <script src="/javascripts/js/main.js"></script>
+
   <div class="site-wrap">
     <header class="site-navbar" role="banner">
       <div class="site-navbar-top">
         <div class="container">
           <div class="row align-items-center">
-
+           
             <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
-              <form action="" class="site-block-top-search">
+              <button style="position: absolute;right: 200px;" class="btn btn-navbar psearch_button">
+              <i class="fas fa-search">ok</i>
+              </button>
                 <span class="icon icon-search2"></span>
-                <input type="text" class="form-control border-0" placeholder="Search">
-              </form>
+                <input type="text" class="form-control border-0" placeholder="Search" name="s2" id="sear_content2">
+             
             </div>
-
+            
             <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
               <div class="site-logo">
                 <a href="index" class="js-logo-clone">Shoppers</a>
@@ -44,7 +56,7 @@
             <div class="col-6 col-md-4 order-3 order-md-3 text-right">
               <div class="site-top-icons">
                 <ul>
-                  <li ><a href="login" ><span class="icon icon-person" ><input type="button" value="login/sign" class="q" > </span></a></li>
+                  <li ><a href="login" ><span class="icon icon-person" ><input type="button" value="login/sign" class="btn btn-navbar search_button" > </span></a></li>
                   <!-- <li><a href="#"><span class="icon icon-heart-o"></span></a></li> -->
                   <li> Cart:</li>
                   <li>

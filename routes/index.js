@@ -180,15 +180,15 @@ router.post('/add',(req,res) => {
  })
 });
 // cart add 
-router.post('addc',(req,res) => {
+router.post('/addc',(req,res) => {
   var product2 = "insert into tab_product values(?,?,?,?,?,?)";
-  connection.query(product2,[req.body.pid,req.body.pname,req.body.ptitle,req.body.pclassify,req.body.price,req.body.pimg],(err,results) => {
+  connection.query(product2,[req.body.psid,req.body.psname,req.body.ptitle,req.body.psclassify,req.body.psrice,req.body.psimg],(err,results) => {
     if(err){
       console.log(err);
       return;
     }
     res.json({"status":1});
-   
+  
   })
 })
 //  product edit
@@ -265,6 +265,23 @@ router.post('/search',(req,res) => {
       res.json(results);
     })
   });
+
+  // shop search
+  router.post('/psearch',(req,res) => {
+    var product5 = "select product_id,product_name,product_title,product_classify, product_price from tab_product where product_id like '%"+req.body.s2+"%' or product_name like '%"+req.body.s2+"%' or product_title like '%"+req.body.s2+"%' or product_classify like '%"+req.body.s2+"%' or product_price like '%"+req.body.s2+"%'"
+    connection.query(product5,(err,results,firelde) => {
+        if(err){
+          console.log(err);
+          return;
+        }
+        console.log(results);
+        res.json(results);
+      })
+    });
+
+
+
+
 
 // page
 var pages=0;

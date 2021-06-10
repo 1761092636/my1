@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
-    <link rel="stylesheet" href="/stylesheets/fonts/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="/stylesheets/fonts/fonts/style.css">
 
     <link rel="stylesheet" href="/stylesheets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/css/magnific-popup.css">
@@ -87,10 +87,10 @@
                 <li><a href="#">Menu Three</a></li>
               </ul>
             </li>
-            <li class="active"><a href="shop">Shop</a></li>
+            <li class="active"><a href="/shop">Shop</a></li>
             <li><a href="#">Catalogue</a></li>
             <li><a href="#">New Arrivals</a></li>
-            <li><a href="contact">Contact</a></li>
+            <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
       </nav>
@@ -99,7 +99,7 @@
     <div class="bg-light py-3">
       <div class="container">
         <div class="row">
-          <div class="col-md-12 mb-0"><a href="index">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Tank Top T-Shirt</strong></div>
+          <div class="col-md-12 mb-0"><a href="/index">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Tank Top T-Shirt</strong></div>
         </div>
       </div>
     </div>  
@@ -115,6 +115,7 @@
   <script src="http://localhost:3000/javascripts/js/jquery.magnific-popup.min.js"></script>
   <script src="http://localhost:3000/javascripts/js/aos.js"></script>
   <script src="http://localhost:3000/javascripts/js/main.js"></script>
+  <script sec="http://localhost:3000/javascripts/addc.js"></script>
 <script>
    $.ajax({
     type:"GET",
@@ -125,16 +126,17 @@
         for(var i in data){
             $("#single").append(
                 `
+  
                 <div class="container">
         <div class="row">
           <div class="col-md-6">
             <img src="http://localhost:3000/images/cloth_1.jpg" alt="Image" class="img-fluid">
           </div>
           <div class="col-md-6">
-            <h2 class="text-black">${data[i].product_name}</h2>
-            <p>${data[i].product_title}</p>
+            <h2 class="text-black" name="psname" id="psname">${data[i].product_name}</h2>
+            <p name ="pstitle" id="pstitle" >${data[i].product_title}</p>
             <p class="mb-4">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p>
-            <p><strong class="text-primary h4">${data[i].product_price+"$"}</strong></p>
+            <p name="psrice"><strong class="text-primary h4" id="psrice">${data[i].product_price+"$"}</strong></p>
             <div class="mb-1 d-flex">
               <label for="option-sm" class="d-flex mr-3 mb-3">
                 <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-sm" name="shop-sizes"></span> <span class="d-inline-block text-black">Small</span>
@@ -161,11 +163,11 @@
             </div>
 
             </div>
-            <p id="addc_button"><a href="/cart" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
+            <button id="addc_button" ><a class="buy-now btn btn-sm btn-primary">Add To Cart</a></button>
           </div>
         </div>
       </div>
-                
+           
                 `
             )
         }
