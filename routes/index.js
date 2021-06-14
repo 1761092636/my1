@@ -25,12 +25,27 @@ router.get('/login',(req,res) => {
 });
 router.post("/login",(req,res) => {
     user2='select user_password,user_name from tab_user where user_name = ? and user_password = ?';
-    connection.query(user2,[req.body.name,req.body.password],function(err,results) {
+    connection.query(user2,[req.body.Name,req.body.Password],function(err,results) {
         if(err) {
           console.log(err)
           return;
+
         }
-        res.redirect("/")
+      else if(results=='')
+        {
+            console.log("帐号密码错误");
+            res.redirect("/error");
+            res.end();
+            
+        }
+        else 
+        {
+            console.log("OK");
+            res.redirect("/");
+            res.end();
+      
+        }
+
         });
  });
 //register
@@ -64,6 +79,14 @@ router.get('/shopmery',(req,res) => {
 router.get('/cart',(req,res) => {
   res.render('cart');
 });
+// error
+router.get('/error',(req,res) => {
+  res.render('error');
+});
+// error1
+router.get('/error1',(req,res) => {
+  res.render('error1');
+});
 
 
 router.get('/cartmery',(req,res) => {
@@ -92,8 +115,23 @@ router.post("/commandlogin",(req,res) => {
       if(err) {
         console.log(err)
         return;
+      
       }
-      res.redirect('/command')
+      else if(results=='')
+      {
+          console.log("帐号密码错误");
+          res.redirect("/error1");
+          res.end();
+          
+      }
+      else 
+      {
+          console.log("OK");
+          res.redirect("/product");
+          res.end();
+    
+      }
+
       });
     });
 // index
@@ -279,14 +317,19 @@ router.post('/search',(req,res) => {
 
 
 // page
-var pages=0;
-var count=0;
-var tpages=0;
-var limit=3;
-router.get('page',(req,res) =>{
-  
-} )
-
+// router.get('page',(req,res) =>{
+//   var current_page = 1;
+//   var num = 9 ;
+//   if(req.query.page){
+//     current_page = parseInt(req.query.page);
+//   }
+// } )
+// var last_page = current_page - 1;
+// if(current_page <= 1){
+//   last_page = 1;
+// } 
+// var next_page = current_page + 1;
+// var str = '' 
 
 
 
