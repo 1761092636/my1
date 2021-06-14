@@ -183,6 +183,10 @@ router.get('/singlemery',(req,res) => {
 router.get('/contact',(req,res) => {
   res.render('contact');
 });
+// thankyou
+router.get('/thankyou',(req,res) => {
+  res.render('thankyou')
+})
 
 
 
