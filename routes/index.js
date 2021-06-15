@@ -153,6 +153,7 @@ router.get('/pro',(req,res) => {
 
   })
 });
+
 // checkout
 router.get('/checkout',(req,res) => {
   res.render('checkout');
@@ -197,15 +198,6 @@ router.get('/product_add',(req,res) => {
   res.render('product_add');
 });
 router.post('/add',(req,res) => {
-  var form = formidable({
-multiples:true,
-uploadDir:path.join(__dirname+"../public/upload_img")
-  });
-  form.parse(req,(err,fields,files) => {
-    console.log(err);
-    console.log(fields);
-    console.log(files);  
-  })
  var product2 = "insert into tab_product values(?,?,?,?,?,?)";
  connection.query(product2,[req.body.pid,req.body.pname,req.body.ptitle,req.body.pclassify,req.body.price,req.body.pimg],(err,results) => {
    if(err){
@@ -219,7 +211,7 @@ uploadDir:path.join(__dirname+"../public/upload_img")
 // cart add 
 router.post('/addc',(req,res) => {
   var product2 = "insert into tab_product values(?,?,?,?,?,?)";
-  connection.query(product2,[req.body.psid,req.body.psname,req.body.ptitle,req.body.psclassify,req.body.psrice,req.body.psimg],(err,results) => {
+  connection.query(product2,[req.body.psid,req.body.psname,req.body.pstitle,req.body.psclassify,req.body.psrice,req.body.psimg],(err,results) => {
     if(err){
       console.log(err);
       return;
@@ -228,6 +220,40 @@ router.post('/addc',(req,res) => {
   
   })
 })
+// addp
+router.get('/addp',(req,res) => {
+  res.render('addp');
+});
+router.post('/addp',(req,res) => {
+  var form = formidable({
+multiples:true,
+uploadDir:path.join(__dirname,"../public/upload_img")
+  });
+  form.parse(req,(err,fields,files) => {
+    console.log(err);
+    console.log(fields);
+    console.log(files);  
+    let newname=Date.now()+path.extname(files.image.name);
+    let newnewname=path.join(__dirname,'../public/upload_img',newname)
+    
+    fs.rename(files.image.path,newnewname,(err) => {
+      console.log(err);
+    })
+    console.log(newname);
+    var image = req.body.image;
+ var product2 = "update tab_product set product_img =?";
+ connection.query(product2,[newname],(err,results) => {
+   if(err){
+     console.log(err);
+     return err;
+   }
+   res.json({"status":1});
+
+   
+ })
+  })
+  
+});
 //  product edit
 router.get('/product_edit',(req,res) => {
   res.render('product_edit');
@@ -305,6 +331,7 @@ router.post('/search',(req,res) => {
 
   // shop search
   router.post('/psearch',(req,res) => {
+    console.log(req.body);
     var product5 = "select product_name,product_title,product_price from tab_product where product_name like '%"+req.body.s2+"%' or product_title like '%"+req.body.s2+"%' or product_price like '%"+req.body.s2+"%'"
     connection.query(product5,(err,results,firelde) => {
         if(err){

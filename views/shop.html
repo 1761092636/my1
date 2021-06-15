@@ -40,7 +40,7 @@
             <!-- search -->
             <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
               <input type="search" class="form-control border-0" placeholder="Search" name="s2" id="sear_content2">
-              <button style="position: absolute;right: 200px;" class="btn btn-navbar psearch_button" type="submit">ok</button>
+              <button style="position: absolute;right: 200px;" class="btn btn-navbar psearch_button" id="psearch_button" type="submit">ok</button>
             </div>
       <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
               <div class="site-logo">
@@ -377,3 +377,37 @@
     
   </body>
 </html>
+<script>
+  $("#psearch_button").click(function(){
+  console.log(123);
+    $.ajax({
+        type:"POST",
+        url:"/psearch",
+        data:{"s2":$("#sear_content2").val()},
+        success:function(data){
+            console.log(data)
+            $("#shop").empty();
+            for(var i in data){
+                $("#shop").append(
+ 
+                  `
+                  <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                  <div class="block-4 text-center border">
+                    <figure class="block-4-image">
+                      <a href="shop-single/${data[i].product_id}"><img src="/images/cloth_2.jpg"  alt="Image placeholder" class="img-fluid"></a>
+                    </figure>
+                    <div class="block-4-text p-4" name = sname>
+                      <h3><a href="shop-single/${data[i].product_id}">${data[i].product_name}</a></h3>
+                      <p class="mb-0">${data[i].product_title}</p>
+                      <p class="text-primary font-weight-bold">${data[i].product_price+"$"}</p>
+                    </div>
+                  </div>
+                  
+                  `
+                )
+            }
+        }
+    })
+
+})
+</script>
